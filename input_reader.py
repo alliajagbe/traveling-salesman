@@ -1,8 +1,8 @@
 def read_euclidean_input():
     N = int(input("Enter number of cities:"))
     cities = []
-    for _ in range(N):
-        x, y = map(float, input().split())
+    for i in range(N):
+        x, y = map(float, input(f"Enter the coordinates of City{i}:").split())
         cities.append((x, y))
     return cities
 
