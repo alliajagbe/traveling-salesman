@@ -6,21 +6,21 @@ def nearest_neighbor(matrix):
     unvisited_cities = set(range(1, num_cities))
     
     current_city = 0
-    best_tour = None
-    best_distance = float('inf')
+    best_tour = [current_city]
+    best_distance = 0
 
     while unvisited_cities:
         nearest_city = min(unvisited_cities, key=lambda city: matrix[current_city][city])
         tour.append(nearest_city)
         unvisited_cities.remove(nearest_city)
         current_city = nearest_city
-        tour_distance = calculate_tour_distance(tour, matrix)
-        
-        if tour_distance < best_distance:
-            best_distance = tour_distance
-            best_tour = tour.copy()
+        best_distance += matrix[tour[-2]][tour[-1]]
 
     # Return to the starting city
-    best_tour.append(best_tour[0])
-
-    return best_tour
+    tour.append(tour[0])
+    best_distance += matrix[tour[-2]][tour[-1]]
+    
+    if best_distance < calculate_tour_distance(best_tour, matrix):
+        return tour
+    else:
+        return best_tour

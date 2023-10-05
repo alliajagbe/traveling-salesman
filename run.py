@@ -8,7 +8,10 @@ def main():
     
     if input_type == "EUCLIDEAN":
         cities = read_euclidean_input()
+        print("CITIES:")
+        print(cities)
         num_cities = len(cities)
+        print(f"Number of cities: {num_cities}")
         distance_matrix = np.zeros((num_cities, num_cities))
         
         # Calculate distances for the Euclidean case
