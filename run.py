@@ -1,6 +1,7 @@
 from input_reader import read_euclidean_input, read_non_euclidean_input
 from distance import calculate_euclidean, calculate_tour_distance
 from nearest_neighbour import nearest_neighbor
+import numpy as np
 
 def main():
     input_type = input().strip()
