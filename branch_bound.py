@@ -2,6 +2,7 @@ from itertools import permutations
 from distance import calculate_tour_distance
 from input_reader import read_euclidean_input
 from distance import calculate_euclidean
+import numpy as np
 
 def tsp_branch_and_bound(distance_matrix):
     num_cities = len(distance_matrix)
