@@ -10,13 +10,15 @@ def main():
         cities = read_euclidean_input()
         num_cities = len(cities)
         distance_matrix = np.zeros((num_cities, num_cities))
-        print("Done Here.")
         
         # Calculate distances for the Euclidean case
         for i in range(num_cities):
             for j in range(i+1, num_cities):
                 distance_matrix[i][j] = calculate_euclidean(cities[i], cities[j])
                 distance_matrix[j][i] = distance_matrix[i][j]
+
+        print("DISTANCE MATRIX:")
+        print(distance_matrix)
         
         # Display coordinates
         print("Coordinates of Cities:")
