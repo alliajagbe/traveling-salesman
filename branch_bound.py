@@ -1,5 +1,7 @@
 from itertools import permutations
 from distance import calculate_tour_distance
+from input_reader import read_euclidean_input
+from distance import calculate_euclidean
 
 def tsp_branch_and_bound(distance_matrix):
     num_cities = len(distance_matrix)
@@ -46,3 +48,31 @@ def tsp_branch_and_bound(distance_matrix):
         tsp_recursive([start_city], 0, bound([] , distance_matrix))
 
     return min_tour, min_distance
+
+def main():
+    input_type = input().strip()
+    
+    if input_type == "EUCLIDEAN":
+        cities = read_euclidean_input()
+        num_cities = len(cities)
+        distance_matrix = np.zeros((num_cities, num_cities))
+        
+        # Calculate distances for the Euclidean case
+        for i in range(num_cities):
+            for j in range(i+1, num_cities):
+                distance_matrix[i][j] = calculate_euclidean(cities[i], cities[j])
+                distance_matrix[j][i] = distance_matrix[i][j]
+    else:
+        print("Invalid input type. Please use EUCLIDEAN.")
+        return
+
+    min_tour, min_distance = tsp_branch_and_bound(distance_matrix)
+    
+    print("Shortest TSP Tour:", min_tour)
+    print("Total Distance:", min_distance)
+
+if __name__ == "__main__":
+    main()
+
+
+
