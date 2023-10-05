@@ -1,5 +1,5 @@
 from input_reader import read_euclidean_input, read_non_euclidean_input
-from distance import calculate_euclidean_distance, calculate_tour_distance
+from distance import calculate_euclidean, calculate_tour_distance
 from nearest_neighbour import nearest_neighbor
 
 def main():
@@ -13,7 +13,7 @@ def main():
         # Calculate distances for the Euclidean case
         for i in range(num_cities):
             for j in range(i+1, num_cities):
-                distance_matrix[i][j] = calculate_euclidean_distance(cities[i], cities[j])
+                distance_matrix[i][j] = calculate_euclidean(cities[i], cities[j])
                 distance_matrix[j][i] = distance_matrix[i][j]
         
         # Display coordinates
