@@ -4,7 +4,7 @@ from nearest_neighbour import nearest_neighbor
 import numpy as np
 
 def main():
-    input_type = input().strip()
+    input_type = input("Enter input type (EUCLIDEAN or NON-EUCLIDEAN):").strip()
     
     if input_type == "EUCLIDEAN":
         cities = read_euclidean_input()
