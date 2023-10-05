@@ -3,7 +3,7 @@ from distance import calculate_tour_distance
 def nearest_neighbor(matrix):
     num_cities = len(matrix)
     best_tour = None
-    best_distance = float('inf')
+    best_distance = float('inf') # initializing distance to infinity
 
     for start_city in range(num_cities):
         tour = [start_city]
