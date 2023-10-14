@@ -20,7 +20,6 @@ def file_reader(file):
     
 distance_matrix = file_reader('input.txt')
 
-# Example usage:
 tour, tour_length = tsp_branch_and_bound(distance_matrix)
 print("Shortest TSP tour:", tour)
 print("Tour length:", tour_length)
