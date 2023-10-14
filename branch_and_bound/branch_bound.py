@@ -1,3 +1,5 @@
+from lowerbound import calculate_lower_bound
+
 # Branch and Bound TSP solver
 def tsp_branch_and_bound(matrix):
     n = len(matrix)
