@@ -6,10 +6,6 @@ def tour_to_path_representation(tour):
     path_representation = [(tour[i]) % n for i in range(n)] + [tour[0]]
     return ' '.join(map(str, path_representation))
 
-def print_path_representation(tour):
-    path_representation = tour_to_path_representation(tour)
-    print(path_representation)
-
 
 # Branch and Bound TSP solver
 def tsp_branch_and_bound(matrix):
@@ -37,7 +33,8 @@ def tsp_branch_and_bound(matrix):
                 min_cost = current_cost
                 best_tour = current_path
                 print("New best tour found with cost", min_cost)
-                print_path_representation(best_tour)
+                best_tour_so_far = tour_to_path_representation(best_tour)
+                print("Tour representation:", best_tour_so_far)
 
         # Explore child nodes
         for city in range(n):
