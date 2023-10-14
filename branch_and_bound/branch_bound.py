@@ -1,10 +1,22 @@
 from lowerbound import calculate_lower_bound
 
+
+def tour_to_path_representation(tour):
+    n = len(tour)
+    path_representation = [(tour[i] + 1) % n for i in range(n)]  # Adjust indices and convert to 1-based
+    return ' '.join(map(str, path_representation))
+
+def print_path_representation(tour):
+    path_representation = tour_to_path_representation(tour)
+    print(path_representation)
+
+
 # Branch and Bound TSP solver
 def tsp_branch_and_bound(matrix):
     n = len(matrix)
     min_cost = float('inf')
     best_tour = None
+    all_tours = []
 
     # Initialize the root node
     root_node = (0, [0], 0)
@@ -26,11 +38,21 @@ def tsp_branch_and_bound(matrix):
                 min_cost = current_cost
                 best_tour = current_path
 
+            all_tours.append(current_path)
+
         # Explore child nodes
         for city in range(n):
             if city not in current_path:
                 lower_bound = calculate_lower_bound(matrix, current_path + [city])
                 if lower_bound < min_cost:
                     nodes_to_explore.append((city, current_path + [city], current_cost + matrix[current_city][city]))
+
+    # Print all paths except the last (optimal) one
+    for path in all_tours[:-1]:
+        print_path_representation(path)
+
+    # Print the optimal path last
+    print("MOST OPTIMAL PATH:")
+    print_path_representation(best_tour)
 
     return best_tour, min_cost
