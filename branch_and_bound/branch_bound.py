@@ -16,7 +16,6 @@ def tsp_branch_and_bound(matrix):
     n = len(matrix)
     min_cost = float('inf')
     best_tour = None
-    all_tours = []
 
     # Initialize the root node
     root_node = (0, [0], 0)
@@ -38,8 +37,7 @@ def tsp_branch_and_bound(matrix):
                 min_cost = current_cost
                 best_tour = current_path
                 print("New best tour found with cost", min_cost)
-
-            all_tours.append(current_path)
+                print_path_representation(best_tour)
 
         # Explore child nodes
         for city in range(n):
@@ -47,11 +45,5 @@ def tsp_branch_and_bound(matrix):
                 lower_bound = calculate_lower_bound(matrix, current_path + [city])
                 if lower_bound < min_cost:
                     nodes_to_explore.append((city, current_path + [city], current_cost + matrix[current_city][city]))
-
-    # Print all paths except the last (optimal) one
-    for path in all_tours:
-        print_path_representation(path)
-
-    best_tour = tour_to_path_representation(best_tour)
 
     return best_tour, min_cost
