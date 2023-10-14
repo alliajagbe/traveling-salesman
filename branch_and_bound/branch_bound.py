@@ -48,11 +48,7 @@ def tsp_branch_and_bound(matrix):
                     nodes_to_explore.append((city, current_path + [city], current_cost + matrix[current_city][city]))
 
     # Print all paths except the last (optimal) one
-    for path in all_tours[:-1]:
+    for path in all_tours:
         print_path_representation(path)
-
-    # Print the optimal path last
-    print("MOST OPTIMAL PATH:")
-    print_path_representation(best_tour)
 
     return best_tour, min_cost
