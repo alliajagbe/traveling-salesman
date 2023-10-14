@@ -13,6 +13,8 @@ for i in range(n):
 
 # Calculate the distance matrix
 distance_matrix = calculate_distance_matrix(coordinates)
+print("Distance Matrix: ")
+print(distance_matrix)
 
 # Example usage:
 tour, tour_length = tsp_branch_and_bound(distance_matrix)
