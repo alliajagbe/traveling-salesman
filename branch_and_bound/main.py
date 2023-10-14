@@ -2,13 +2,13 @@ from distance import calculate_distance_matrix
 from branch_bound import tsp_branch_and_bound 
 
 # Read input
-problem_type = input()
-n = int(input())
+problem_type = input("EUCLIDEAN or NON-EUCLIDEAN: ").strip()
+n = int(input("Enter Number of Cities: "))
 coordinates = []
 
 # Read coordinates
-for _ in range(n):
-    x, y = map(float, input().split())
+for i in range(n):
+    x, y = map(float, input(f"Enter the Coordinates for City {i}:").split())
     coordinates.append((x, y))
 
 # Calculate the distance matrix
