@@ -10,11 +10,11 @@ def file_reader(file):
         n = int(f.readline().strip())
 
         if problem_type == 'EUCLIDEAN':
-            coordinates = [tuple(map(float, line.split())) for line in f.readline().strip().split('\n')]
+            coordinates = [tuple(map(float, f.readline().strip().split())) for _ in range(n)]
+            print("Coordinates: ", coordinates)
             distance_matrix = calculate_distance_matrix(coordinates)
         elif problem_type == 'NON-EUCLIDEAN':
-            distance_matrix = np.array([list(map(float, line.split())) for line in file.readline().strip().split('\n')])
-
+            distance_matrix = np.array([list(map(float, line.split())) for line in f.readlines()])
 
         return distance_matrix
     
