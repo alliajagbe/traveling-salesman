@@ -3,7 +3,7 @@ from lowerbound import calculate_lower_bound
 
 def tour_to_path_representation(tour):
     n = len(tour)
-    path_representation = [(tour[i] + 1) % n for i in range(n)]  # Adjust indices and convert to 1-based
+    path_representation = [(tour[i]) % n for i in range(n)] + [tour[0]]
     return ' '.join(map(str, path_representation))
 
 def print_path_representation(tour):
@@ -37,6 +37,7 @@ def tsp_branch_and_bound(matrix):
             if current_cost < min_cost:
                 min_cost = current_cost
                 best_tour = current_path
+                print("New best tour found with cost", min_cost)
 
             all_tours.append(current_path)
 
@@ -50,5 +51,7 @@ def tsp_branch_and_bound(matrix):
     # Print all paths except the last (optimal) one
     for path in all_tours:
         print_path_representation(path)
+
+    best_tour = tour_to_path_representation(best_tour)
 
     return best_tour, min_cost
