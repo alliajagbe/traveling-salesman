@@ -40,7 +40,7 @@ def tsp_branch_and_bound(matrix):
         for city in range(n):
             if city not in current_path:
                 lower_bound = calculate_lower_bound(matrix, current_path + [city])
-                if lower_bound < min_cost:
+                if lower_bound < min_cost: # Only explore nodes with potential to have a lower cost than the best tour so far
                     nodes_to_explore.append((city, current_path + [city], current_cost + matrix[current_city][city]))
 
         current_tour = tour_to_path_representation(current_path)
