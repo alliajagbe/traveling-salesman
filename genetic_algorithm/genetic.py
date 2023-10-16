@@ -15,11 +15,6 @@ def read_input(file_path):
             distances.append(list(map(float, file.readline().split())))
         return tsp_type, N, cities, distances
 
-def euclidean_distance(city1, city2):
-    x1, y1 = city1
-    x2, y2 = city2
-    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-
 def calculate_tour_length(tour, distances):
     total_length = 0.0
     n = len(tour)
