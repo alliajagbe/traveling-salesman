@@ -23,8 +23,9 @@ def euclidean_distance(city1, city2):
 def calculate_tour_length(tour, distances):
     total_length = 0.0
     n = len(tour)
-    for i in range(n):
+    for i in range(n - 1):
         total_length += distances[tour[i]][tour[i + 1]]
+    total_length += distances[tour[-1]][tour[0]]  # Return to the starting city
     return total_length
 
 def simulated_annealing(N, cities, distances, initial_temperature=1000, cooling_rate=0.995, max_iterations=1000):
@@ -59,6 +60,7 @@ def simulated_annealing(N, cities, distances, initial_temperature=1000, cooling_
             if current_length < best_length:
                 best_tour = current_tour
                 best_length = current_length
+                print("New tour found:", best_tour)
 
         # Cool down the temperature
         temperature *= cooling_rate
@@ -68,6 +70,10 @@ def simulated_annealing(N, cities, distances, initial_temperature=1000, cooling_
 if __name__ == '__main__':
     input_file = "input.txt"
     tsp_type, N, cities, distances = read_input(input_file)
+    print(tsp_type)
+    print(N)
+    print(cities)
+    print(distances)
 
     # Apply the Simulated Annealing Algorithm to approximate the TSP
     tour = simulated_annealing(N, cities, distances)
@@ -75,7 +81,6 @@ if __name__ == '__main__':
     # Calculate the final tour length
     tour_length = calculate_tour_length(tour, distances)
 
-    # Print the tour and its length to the standard output and standard error
     for city_index in tour:
         print(cities[city_index])
-    print("Total Tour Length:", tour_length, file=sys.stderr)
+    print("Total Tour Length:", tour_length)
