@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
     # Apply the 2-opt algorithm
     tour = two_opt(tour, distances)
+    print("Tour:",tour)
 
     # Calculate the final tour length
     tour_length = calculate_tour_length(tour, distances)
