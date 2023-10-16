@@ -44,6 +44,10 @@ def two_opt(tour, distances):
 if __name__ == '__main__':
     input_file = "input.txt"
     tsp_type, N, cities, distances = read_input(input_file)
+    print("tsp type", tsp_type)
+    print("number of cities", N)
+    print("cities", cities)
+    print("distances", distances)
 
     tour = list(range(N))
 
