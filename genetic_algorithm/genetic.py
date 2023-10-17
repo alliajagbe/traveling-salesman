@@ -98,9 +98,7 @@ def genetic_algorithm(N, cities, distances, population_size=100, generations=100
 
             # Print the best tour in this generation
             print(f"Generation {generation + 1}:")
-            for city_index in best_tour:
-                print(cities[city_index])
-            print("Total Tour Length:", best_tour_length)
+            print("The Tour:",best_tour, "with length", best_tour_length)
             print("")
 
     return best_tour
@@ -113,6 +111,5 @@ if __name__ == '__main__':
 
     tour_length = calculate_tour_length(best_tour, distances)
 
-    for city_index in best_tour:
-        print(cities[city_index])
+    print("Final Tour:", best_tour)
     print("Total Tour Length:", tour_length, file=sys.stderr)

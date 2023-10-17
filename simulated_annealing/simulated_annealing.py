@@ -63,7 +63,7 @@ def simulated_annealing(N, cities, distances, initial_temperature=10000, cooling
     return best_tour
 
 if __name__ == '__main__':
-    input_file = "input.txt"
+    input_file = "input100.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     # Apply the Simulated Annealing Algorithm to approximate the TSP
