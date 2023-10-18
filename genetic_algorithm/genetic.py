@@ -1,6 +1,4 @@
-import sys
 import random
-import math
 
 def read_input(file_path):
     with open(file_path, 'r') as file:
@@ -31,21 +29,21 @@ def generate_initial_population(N, population_size):
         population.append(tour)
     return population
 
-def partially_mapped_crossover(parent1, parent2):
+def order_crossover(parent1, parent2):
     n = len(parent1)
     start, end = sorted(random.sample(range(n), 2))
+    child = [None] * n
 
-    child = [-1] * n
+    # Copy a slice from the first parent to the child
     child[start:end] = parent1[start:end]
 
-    for i in range(n):
-        if start <= i < end:
-            continue
-        gene = parent2[i]
-        while gene in child:
-            index = parent2.index(gene)
-            gene = parent1[index]
-        child[i] = gene
+    # Fill in the remaining positions with genes from the second parent
+    i = end
+    while None in child:
+        gene = parent2[i % n]
+        if gene not in child:
+            child[child.index(None)] = gene
+        i += 1
 
     return child
 
@@ -59,10 +57,11 @@ def tournament_selection(population, fitness, tournament_size):
     best_index = min(tournament, key=lambda i: fitness[i])
     return population[best_index]
 
-def genetic_algorithm(N, cities, distances, population_size=100, generations=1000, mutation_rate=0.01, tournament_size=5):
+def genetic_algorithm(N, cities, distances, population_size=1000, generations=1000, mutation_rate=0.01, tournament_size=5, max_generation_without_improvement=50):
     population = generate_initial_population(N, population_size)
     best_tour = None
     best_tour_length = float('inf')
+    generations_without_improvement = 0
 
     for generation in range(generations):
         # Evaluate fitness of the population
@@ -76,8 +75,8 @@ def genetic_algorithm(N, cities, distances, population_size=100, generations=100
             parent2 = tournament_selection(population, fitness, tournament_size)
 
             # Create children through crossover (Partially Mapped Crossover)
-            child1 = partially_mapped_crossover(parent1, parent2)
-            child2 = partially_mapped_crossover(parent2, parent1)
+            child1 = order_crossover(parent1, parent2)
+            child2 = order_crossover(parent2, parent1)
 
             # Apply mutation to the children (Swap Mutation)
             swap_mutation(child1, mutation_rate)
@@ -95,16 +94,20 @@ def genetic_algorithm(N, cities, distances, population_size=100, generations=100
         if current_best_tour_length < best_tour_length:
             best_tour = current_best_tour
             best_tour_length = current_best_tour_length
-
-            # Print the best tour in this generation
+            generations_without_improvement = 0
             print(f"Generation {generation + 1}:")
             print("The Tour:",best_tour, "with length", best_tour_length)
             print("")
+        else:
+            generations_without_improvement += 1
+
+        if generations_without_improvement >= max_generation_without_improvement:
+            break
 
     return best_tour
 
 if __name__ == '__main__':
-    input_file = "input.txt"
+    input_file = "input100.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     best_tour = genetic_algorithm(N, cities, distances)
@@ -112,4 +115,4 @@ if __name__ == '__main__':
     tour_length = calculate_tour_length(best_tour, distances)
 
     print("Final Tour:", best_tour)
-    print("Total Tour Length:", tour_length, file=sys.stderr)
+    print("Total Tour Length:", tour_length)
