@@ -1,15 +1,12 @@
-def read_euclidean_input():
-    N = int(input("Enter number of cities:"))
-    cities = []
-    for i in range(N):
-        x, y = map(float, input(f"Enter the coordinates of City{i}:").split())
-        cities.append((x, y))
-    return cities
-
-def read_non_euclidean_input():
-    N = int(input("Enter number of cities:"))
-    distance_matrix = []
-    for _ in range(N):
-        distances = list(map(float, input().split()))
-        distance_matrix.append(distances)
-    return distance_matrix
+def read_input(file_path):
+    with open(file_path, 'r') as file:
+        tsp_type = file.readline().strip()
+        N = int(file.readline())
+        cities = []
+        for _ in range(N):
+            x, y = map(float, file.readline().split())
+            cities.append((x, y))
+        distances = []
+        for _ in range(N):
+            distances.append(list(map(float, file.readline().split())))
+        return tsp_type, N, cities, distances
