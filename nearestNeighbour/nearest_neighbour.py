@@ -1,4 +1,4 @@
-from distance import calculate_tour_distance
+from distance import calculate_tour_length
 
 def nearest_neighbor(matrix):
     num_cities = len(matrix)
@@ -19,7 +19,7 @@ def nearest_neighbor(matrix):
 
         # Return to the starting city
         tour.append(start_city)
-        tour_distance = calculate_tour_distance(tour, matrix)
+        tour_distance = calculate_tour_length(tour, matrix)
 
         if tour_distance < best_distance:
             best_distance = tour_distance
