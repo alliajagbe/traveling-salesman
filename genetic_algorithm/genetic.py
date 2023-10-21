@@ -29,7 +29,7 @@ def generate_initial_population(N, population_size):
         population.append(tour)
     return population
 
-def order_crossover(parent1, parent2):
+def order_crossover(parent1, parent2): # order crossover for generating children from parents
     n = len(parent1)
     start, end = sorted(random.sample(range(n), 2))
     child = [None] * n
