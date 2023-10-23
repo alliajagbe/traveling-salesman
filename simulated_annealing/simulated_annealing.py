@@ -122,14 +122,14 @@ if __name__ == '__main__':
     refined_tour_length = calculate_tour_length(refined_tour, distances)
     print("Total Tour Length after 2-opt:", refined_tour_length)
 
-    three_opt_start_time = time.time()
-    refined_tour3 = three_opt(refined_tour, distances)
-    three_opt_time = time.time() - three_opt_start_time
-    print("Time taken for 3-opt:", three_opt_time)
-    print("3-Opt Refined Tour:",refined_tour3)
-    refined_tour_length3 = calculate_tour_length(refined_tour3, distances)
-    print("Total Tour Length after 3-opt:", refined_tour_length3)
+    # three_opt_start_time = time.time()
+    # refined_tour3 = three_opt(refined_tour, distances)
+    # three_opt_time = time.time() - three_opt_start_time
+    # print("Time taken for 3-opt:", three_opt_time)
+    # print("3-Opt Refined Tour:",refined_tour3)
+    # refined_tour_length3 = calculate_tour_length(refined_tour3, distances)
+    # print("Total Tour Length after 3-opt:", refined_tour_length3)
     
     print("Number of unique cities visited:", len(set(tour)))
     print("Number of unique cities visited after 2-opt:", len(set(refined_tour)))
-    print("Number of unique cities visited after 3-opt:", len(set(refined_tour3)))
+    # print("Number of unique cities visited after 3-opt:", len(set(refined_tour3)))
