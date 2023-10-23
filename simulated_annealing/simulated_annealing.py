@@ -73,6 +73,7 @@ def two_opt(tour, distances):
                 new_length = calculate_tour_length(new_tour, distances)
                 if new_length < calculate_tour_length(best_tour, distances):
                     best_tour = new_tour
+                    print("New tour found:", best_tour, "with cost:", new_length)
                     improved = True
         tour = best_tour
 
@@ -92,6 +93,7 @@ def three_opt(tour, distances):
                     new_length = calculate_tour_length(new_tour, distances)
                     if new_length < calculate_tour_length(best_tour, distances):
                         best_tour = new_tour
+                        print("New tour found:", best_tour, "with cost:", new_length)
                         improved = True
         tour = best_tour
 
