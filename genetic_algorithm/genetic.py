@@ -1,7 +1,5 @@
 import random
-import math
 import time
-from itertools import islice, chain
 
 def read_input(file_path):
     with open(file_path, 'r') as file:
