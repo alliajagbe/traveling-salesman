@@ -93,7 +93,7 @@ def genetic_algorithm(N, cities, distances, population_size=200, num_generations
         while len(new_population) < population_size:
             parent1 = tournament_selection(population, tournament_size)
             parent2 = tournament_selection(population, tournament_size)
-            
+
             child = hybrid_crossover(parent1, parent2, generation)
             mutate(child)
             new_population.append(child)
@@ -126,8 +126,9 @@ def two_opt(tour, distances):
 
     return best_tour
 
+
 if __name__ == '__main__':
-    input_file = "st70.txt"
+    input_file = "kroC100.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     start_time = time.time()
