@@ -69,7 +69,7 @@ def genetic_algorithm(N, cities, distances, population_size=100, num_generations
     return best_tour
 
 if __name__ == '__main__':
-    input_file = "200.txt"
+    input_file = "input100.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     start_time = time.time()

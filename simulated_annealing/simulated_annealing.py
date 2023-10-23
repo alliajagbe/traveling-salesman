@@ -23,7 +23,7 @@ def calculate_tour_length(tour, distances):
     total_length += distances[tour[-1]][tour[0]]  # Return to the starting city
     return total_length
 
-def simulated_annealing(N, cities, distances, initial_temperature=1000.0, cooling_rate=0.99, max_iterations=80000):
+def simulated_annealing(N, cities, distances, initial_temperature=1000.0, cooling_rate=0.99, max_iterations=100000):
     current_tour = list(range(N))
     current_length = calculate_tour_length(current_tour, distances)
     best_tour = current_tour
@@ -100,7 +100,7 @@ def three_opt(tour, distances):
     return best_tour
 
 if __name__ == '__main__':
-    input_file = "200.txt"
+    input_file = "st70.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     # Apply the Simulated Annealing Algorithm to approximate the TSP
@@ -122,14 +122,14 @@ if __name__ == '__main__':
     refined_tour_length = calculate_tour_length(refined_tour, distances)
     print("Total Tour Length after 2-opt:", refined_tour_length)
 
-    # three_opt_start_time = time.time()
-    # refined_tour3 = three_opt(refined_tour, distances)
-    # three_opt_time = time.time() - three_opt_start_time
-    # print("Time taken for 3-opt:", three_opt_time)
-    # print("3-Opt Refined Tour:",refined_tour3)
-    # refined_tour_length3 = calculate_tour_length(refined_tour3, distances)
-    # print("Total Tour Length after 3-opt:", refined_tour_length3)
+    three_opt_start_time = time.time()
+    refined_tour3 = three_opt(refined_tour, distances)
+    three_opt_time = time.time() - three_opt_start_time
+    print("Time taken for 3-opt:", three_opt_time)
+    print("3-Opt Refined Tour:",refined_tour3)
+    refined_tour_length3 = calculate_tour_length(refined_tour3, distances)
+    print("Total Tour Length after 3-opt:", refined_tour_length3)
     
     print("Number of unique cities visited:", len(set(tour)))
     print("Number of unique cities visited after 2-opt:", len(set(refined_tour)))
-    # print("Number of unique cities visited after 3-opt:", len(set(refined_tour3)))
+    print("Number of unique cities visited after 3-opt:", len(set(refined_tour3)))
