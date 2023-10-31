@@ -128,7 +128,7 @@ def two_opt(tour, distances):
 
 
 if __name__ == '__main__':
-    input_file = "kroC100.txt"
+    input_file = "st70.txt"
     tsp_type, N, cities, distances = read_input(input_file)
 
     start_time = time.time()
